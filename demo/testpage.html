@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>gallery Demo - X-Tag</title>
+    <link rel="stylesheet" type="text/css" href="../src/gallery.css">
+	  <script type="text/javascript" src="x-tag-components.js"></script>
+    <script type="text/javascript" src="../src/gallery.js"></script>
+    <style type="text/css">
+      x-gallery {
+        height: 300px;
+        width: 220px;
+      }
+      x-gallery img {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <dl>
+      <dd id="gallery">
+        <nav class="actions">
+          <button data-action-type="slidePrevious">&lsaquo; Previous Slide</button>
+          <button data-action-type="slideNext">Next Slide &rsaquo;</button>
+          <button data-action-type="slideTo">Slide To 3</button>
+          <button data-action-type="slideOrientation">Toggle orientation</button>
+        </nav>
+
+        <x-gallery orientation="x">
+          <x-slides>
+            <x-slide><img src="birnimal-calendar.png"></x-slide>
+            <x-slide><img src="birnimal-graph.png"></x-slide>
+            <x-slide><img src="birnimal-detail.png"></x-slide>
+            <x-slide><img src="birnimal-settings.png"></x-slide>
+          </x-slides>
+        </x-gallery>
+        <x-thumbnails>
+        </x-thumbnails>
+      </dd>
+    </dl>
+
+    <script type="text/javascript">
+      var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
+      function fieldFocused(e) {
+          return tags.test(e.target.nodeName);
+      }
+
+      var g = document.querySelector('x-gallery');
+
+      g.addEventListener('slideend', function(e) {
+        console.log('slideend event fired', e.target, this);
+      });
+
+      g.addEventListener('fooo', function(e) {
+        console.log('foo');
+      });
+
+      xtag.fireEvent(g, 'fooo');
+
+      xtag.addEvent(document, 'keydown:keypass(37)', function(e) {
+        if (fieldFocused(e)) {
+          return true;
+        }
+        console.log('left');
+        g.slidePrevious();
+      });
+
+      xtag.addEvent(document, 'keydown:keypass(39)', function(e) {
+        if (fieldFocused(e)) {
+          return true;
+        }
+        console.log('right');
+        g.slideNext();
+      });
+
+      document.addEventListener('click', function(e) {
+        var action = e.target;
+        var parent = action.parentNode;
+        var actionType = action.getAttribute('data-action-type');
+
+        switch (actionType) {
+          case 'slideNext':
+            g.slideNext();
+            break;
+          case 'slidePrevious':
+            g.slidePrevious();
+            break;
+          case 'slideTo':
+            g.slideTo(2);
+            break;
+          case 'slideOrientation':
+            g.orientation = g.orientation === 'x' ? 'y' : 'x';
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>

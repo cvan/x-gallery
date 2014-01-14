@@ -1,0 +1,21 @@
+{
+  "name": "x-tag-gallery",
+  "description": "Slides images",
+  "version": "0.2.4",
+  "keywords": [
+    "web-components",
+    "gallery",
+    "structural",
+    "element",
+    "x-tag"
+  ],
+  "main": [
+    "src/gallery.js",
+    "src/gallery.css",
+    "src/gallery.styl"
+  ],
+  "dependencies": {
+    "x-tag-core": "*",
+    "brick-common": "*"
+  }
+}
