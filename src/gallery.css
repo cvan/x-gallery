@@ -3,6 +3,37 @@ x-gallery {
     overflow: hidden;
     height: 100%;
     width: 100%;
+    position: relative;
+}
+
+x-gallery div[class*='arrow-'] {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    margin: 5px;
+    margin-top: -15px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    transition: opacity .3s ease;
+}
+
+x-gallery div.arrow-right {
+    right: 0;
+}
+
+x-gallery:hover div[class*='arrow-'] {
+    opacity: 1.0;
 }
 
 x-slides {
