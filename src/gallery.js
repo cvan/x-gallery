@@ -63,6 +63,18 @@
     lifecycle: {
       created: function() {
         init();
+        var that = this;
+        function createArrow(dir) {
+          var arrow = document.createElement('div');
+          arrow.setAttribute('class', 'arrow-' + dir);
+          arrow.innerHTML = dir === 'left' ? '&lsaquo;' : '&rsaquo;';
+          arrow.addEventListener('click', function(e) {
+            dir === 'left' ? e.target.parentNode.slidePrevious() : e.target.parentNode.slideNext();
+          });
+          that.appendChild(arrow);
+        }
+        createArrow('left');
+        createArrow('right');
       }
     },
     events: {

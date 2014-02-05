@@ -1,8 +1,39 @@
 x-gallery {
     display: block;
     overflow: hidden;
+    position: relative;
     height: 100%;
     width: 100%;
+}
+
+x-gallery div[class*='arrow-'] {
+    background-color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #000;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    margin: 5px;
+    margin-top: -15px;
+    opacity: 0;
+    text-align: center;
+    top: 50%;
+    transition: opacity .3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    width: 30px;
+}
+
+x-gallery div.arrow-right {
+    right: 0;
+}
+
+x-gallery:hover div[class*='arrow-'] {
+    opacity: 1.0;
 }
 
 x-slides {
